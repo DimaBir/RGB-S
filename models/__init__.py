@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -28,5 +29,14 @@ class Net(nn.Module):
         x = self.fc3(x)
         return x
 
+    def save_networks(self, model_folder, optimizer, epoch):
+        # Save models checkpoints
+        torch.save({'optimizer_state_dict': optimizer.state_dict()}, model_folder)
 
-net = Net()
+        torch.save(self.state_dict(), model_folder)
+        with open(model_folder, 'w+') as file:
+            file.write(str(epoch + 1))
+
+
+def create_model():
+    return Net()
