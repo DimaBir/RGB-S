@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d9caff-6cf8-4702-a6ca-4239d007394c" name="Default Changelist" comment="" />
+    <list default="true" id="97d9caff-6cf8-4702-a6ca-4239d007394c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/RGB-S.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RGB-S.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/createCSV.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/createCSV.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +22,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JupyterTrust" id="52166935-6203-403c-800c-79ba6e0a7d12" />
   <component name="ProjectId" id="1YDJYu38nYT1fQCPJwm2YotfH7i" />
   <component name="ProjectViewState">
@@ -23,9 +34,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/data/createCSV.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -43,7 +56,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/createCSV.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -85,6 +98,9 @@
       <updated>1582471282426</updated>
       <workItem from="1582471299164" duration="1897000" />
       <workItem from="1582536114807" duration="982000" />
+      <workItem from="1582539635975" duration="929000" />
+      <workItem from="1582547902455" duration="530000" />
+      <workItem from="1582548442226" duration="3802000" />
     </task>
     <servers />
   </component>
@@ -96,24 +112,76 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="617" y="215" key="#Inspections/0.0.2048.1112@0.0.2048.1112" timestamp="1582473912080" />
-    <state x="479" y="211" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582536722423">
+    <state x="479" y="211" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582549878886">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="479" y="211" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1582536722423" />
+    <state x="479" y="211" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1582549878886" />
+    <state x="804" y="269" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1582549873520">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="804" y="269" key="#com.intellij.ide.macro.MacrosDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1582549873520" />
     <state x="804" y="331" key="FileChooserDialogImpl" timestamp="1582473846655">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="804" y="331" key="FileChooserDialogImpl/0.0.2048.1112@0.0.2048.1112" timestamp="1582473846655" />
-    <state x="533" y="199" key="SettingsEditor" timestamp="1582473811869">
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1582551644459">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="533" y="199" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1582473811869" />
-    <state x="721" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1582536116363">
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1582551644459" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1582551644459">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="721" y="380" key="com.intellij.ide.util.TipDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1582536116363" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1582551644458" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1582551644458">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1582551644458" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1582551644459">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1582551644459" />
+    <state width="2005" height="160" key="GridCell.Tab.1.bottom" timestamp="1582551554200">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="160" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1582551554200" />
+    <state width="2005" height="160" key="GridCell.Tab.1.center" timestamp="1582551554200">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="160" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1582551554200" />
+    <state width="2005" height="160" key="GridCell.Tab.1.left" timestamp="1582551554199">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="160" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1582551554199" />
+    <state width="2005" height="160" key="GridCell.Tab.1.right" timestamp="1582551554200">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="160" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1582551554200" />
+    <state x="533" y="199" key="SettingsEditor" timestamp="1582539953125">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="533" y="199" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1582539953125" />
+    <state x="721" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1582548453187">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="721" y="380" key="com.intellij.ide.util.TipDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1582548453187" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data/createCSV.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data/createCSV.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/RGB_S$createCSV.coverage" NAME="createCSV Coverage Results" MODIFIED="1582536724916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/RGB_S$createCSV.coverage" NAME="createCSV Coverage Results" MODIFIED="1582551554165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
   </component>
 </project>
