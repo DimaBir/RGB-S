@@ -60,7 +60,11 @@ class VGG16(nn.Module):
         return x
 
     def predict(self, x):
-        # a function to predict the labels of a batch of inputs
+        ''' Predicts the labels of a mini-batch of inputs
+            @:param x: Input of NN
+            @:return: Returns prediction for class with highest probability
+            @:rtype: float
+        '''
         x = F.softmax(self.forward(x, training=False))
         return x
 

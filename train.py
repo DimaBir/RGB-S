@@ -1,86 +1,70 @@
-import sys
 import time
 import torch
-import shutil
+import config
 import torch.optim as optim
+import matplotlib.pyplot as plt
+
 
 from torch import nn
-from data import create_dataset
-from models import vgg16_custom
+from data import create_dataset, data_transform
+from models import vgg16_custom, create_model
 from torch.utils.data import DataLoader
-from torchvision.transforms import transforms
 from torch.optim.lr_scheduler import ReduceLROnPlateau, StepLR
 
-_, term_width = shutil.get_terminal_size()
-term_width = int(term_width)
+PATH = config.RGB_ONLY_3_CHANNELS
+DATASET_PATH = r"D:\Github\RGB-S\data\simulation_2\binary\simulation_dataset.csv"
+# TODO: In final version make it arameter to function. ARGS
 
-TOTAL_BAR_LENGTH = 30.
-last_time = time.time()
-begin_time = last_time
+RGB_CHANNELS = {
+    "num": 3,
+    "channels": {
+        "R": True, "G": True, "B": True, "S1": False, "S2": False, "S3": False, "S4": False, "S5": False,
+        "S6": False, "S7": False
+    }
+}
 
+SPECTRAL_CHANNELS = {
+    "num": 7,
+    "channels": {
+        "R": False, "G": False, "B": False, "S1": True, "S2": True, "S3": True, "S4": True, "S5": True,
+        "S6": True, "S7": True
+    }
+}
 
-def progress_bar(current, totals, msg=None):
-    global last_time, begin_time
-    if current == 0:
-        begin_time = time.time()  # Reset for new bar.
+ALL_CHANNELS = {
+    "num": 10,
+    "channels": {
+        "R": True, "G": True, "B": True, "S1": True, "S2": True, "S3": True, "S4": True, "S5": True,
+            "S6": True, "S7": True
+    }
+}
 
-    cur_len = int(TOTAL_BAR_LENGTH * current / totals)
-    rest_len = int(TOTAL_BAR_LENGTH - cur_len) - 1
+DICTIONARY = RGB_CHANNELS
 
-    sys.stdout.write(' [')
-    for i in range(cur_len):
-        sys.stdout.write('=')
-    sys.stdout.write('>')
-    for i in range(rest_len):
-        sys.stdout.write('.')
-    sys.stdout.write(']')
-
-    cur_time = time.time()
-    step_time = cur_time - last_time
-    last_time = cur_time
-    tot_time = cur_time - begin_time
-
-    L = []
-    if msg:
-        L.append(' | ' + msg)
-
-    msg = ''.join(L)
-    sys.stdout.write(msg)
-    for i in range(term_width - int(TOTAL_BAR_LENGTH) - len(msg) - 3):
-        sys.stdout.write(' ')
-
-    # Go back to the center of the bar.
-    for i in range(term_width - int(TOTAL_BAR_LENGTH / 2) + 2):
-        sys.stdout.write('\b')
-    sys.stdout.write(' %d/%d ' % (current + 1, totals))
-
-    if current < totals - 1:
-        sys.stdout.write('\r')
-    else:
-        sys.stdout.write('\n')
-    sys.stdout.flush()
-
+CHANNELS = DICTIONARY["channels"]
+NUM_OF_CHANNELS = DICTIONARY["num"]
 
 if __name__ == '__main__':
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-    learning_rate = 1
-    n_epochs = 100
-    batch_size = 32
+    # TODO: Move to parameters, clean code
+    n_epochs = 300
+    batch_size = 64
+    learning_rate = 0.1
 
-    data_transform = transforms.Compose([
-        transforms.RandomHorizontalFlip(),
-        # transforms.RandomRotation(degrees=30),
-        transforms.ToTensor(),
-        # transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
-    ])
+    # Model creation
+    model = create_model(num_of_channels=NUM_OF_CHANNELS).to(device)
 
-    train_dataset = create_dataset(path_to_csv=".//data//simulation_binary_1//simulation_dataset.csv",
+    train_dataset = create_dataset(path_to_csv=DATASET_PATH,
                                    case="Train",
-                                   transform=data_transform)  # create a dataset
-    validation_dataset = create_dataset(path_to_csv=".//data//simulation_binary_1//simulation_dataset.csv",
+                                   transform=data_transform(),  # create a dataset
+                                   channels_vector=CHANNELS)
+
+    validation_dataset = create_dataset(path_to_csv=DATASET_PATH,
                                         case="Validation",
-                                        transform=data_transform)  # create a dataset
+                                        transform=data_transform(),  # create a dataset
+                                        channels_vector=CHANNELS)
+
     train_dataset_size = len(train_dataset)  # get the number of images in the dataset.
     validation_dataset_size = len(validation_dataset)  # get the number of images in the dataset.
 
@@ -89,39 +73,42 @@ if __name__ == '__main__':
 
     train_data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     validation_data_loader = DataLoader(validation_dataset, batch_size=1, shuffle=True)
-    model = vgg16_custom.create_model().to(device)  # create a model
+
+    print("Model has been loaded successfully")
 
     if torch.cuda.is_available():
         model.cuda()
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adadelta(model.parameters(), lr=learning_rate) # SGD, ADAM, RMSProp
+    optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9) # SGD, ADAM, RMSProp
 
     # factor = decaying factor
-    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=3, verbose=True)
+    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=20, verbose=True)
 
     best_validation_accuracy = 0.0
     epoch = 0
+    y_hat = []
+    y = []
 
     for epoch in range(epoch, n_epochs):  # outer loop for different epochs;
         epoch_start_time = time.time()  # timer for entire epoch
         iter_data_time = time.time()  # timer for data loading per iteration
         epoch_iter = 0  # the number of training iterations in current epoch, reset to 0 every epoch
 
+        train_total = 0
+        train_correct = 0
         total_iters = 0  # the total number of training iterations
         running_loss = 0.0
         print("Start of epoch %d / %d" % (epoch + 1, n_epochs))
         for data in train_data_loader:  # inner loop within one epoch
-
             iter_start_time = time.time()  # timer for computation per iteration
-            if total_iters % 25 == 0:
-                t_data = iter_start_time - iter_data_time
 
             total_iters += batch_size
             epoch_iter += batch_size
 
             # get the inputs; data is a list of [inputs, labels]
             images, labels = data
+            [y.append(label.item()) for label in labels]
             images = images.type(torch.cuda.FloatTensor).to(device)
             labels = labels.type(torch.cuda.FloatTensor).to(device)
 
@@ -129,18 +116,18 @@ if __name__ == '__main__':
             optimizer.zero_grad()
 
             # forward + backward + optimize
-            outputs = model(images)
+            outputs = model.predict(images)
+            train_total += labels.size(0)
+            _, train_predicted = torch.max(outputs.data, 1)
+            train_correct += (train_predicted == labels).sum().item()
+            [y_hat.append(output[1].item()) for output in outputs]
+
             loss = criterion(outputs, labels.long())
             loss.backward()
             optimizer.step()
 
             # print statistics
             running_loss += loss.item()
-            if total_iters % 25 == 0:  # print every 100 mini-batches
-                print('[%d/%d, %5d/%d] loss: %.3f' %
-                      (epoch + 1, n_epochs, total_iters + 1, len(train_data_loader), running_loss / 25))
-                running_loss = 0.0
-
             iter_data_time = time.time()
 
             # Validate
@@ -153,22 +140,37 @@ if __name__ == '__main__':
                     val_labels = val_labels.type(torch.cuda.FloatTensor).to(device)
 
                     val_outputs = model(val_images)
-                    _, predicted = torch.max(val_outputs.data, 1)
                     total += val_labels.size(0)
+                    _, predicted = torch.max(val_outputs.data, 1)
                     correct += (predicted == val_labels).sum().item()
 
             current_validation_acc = (100 * correct / total)
 
-            # progress_bar(total_iters, len(train_data_loader), 'Loss: %.3f '
-            #             % (current_validation_acc))
             if current_validation_acc > best_validation_accuracy:
                 print('Best validation accuracy : %d %%' % current_validation_acc)
                 best_validation_accuracy = current_validation_acc
-                torch.save(model.state_dict(), "rgb_s_cnn.pt")
+                torch.save(model.state_dict(), PATH)
                 print("Model saved")
 
-        print("End of epoch %d / %d \t Time Taken: %d sec" % (
-            epoch, n_epochs, time.time() - epoch_start_time))
+        y_hat_ones = []
+        y_hat_zeros = []
+        [y_hat_ones.append(y_hat[i]) for i, j in enumerate(y) if j == 1.]
+        [y_hat_zeros.append(y_hat[i]) for i, j in enumerate(y) if j == 0.]
+        plt.hist(y_hat_zeros, color='b', bins=100, label='CLass 0', alpha=0.5)
+        plt.hist(y_hat_ones, color='r', bins=100, label='Class 1', alpha=0.5)
+        plt.gca().set(title='Frequency vs Prob of Class [1], epoch: %d Train Acc: %d %%' %
+                            (epoch + 1, 100 * train_correct / train_total), ylabel='Frequency')
+        # plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
+        plt.legend()
+        plt.show()
+
+        print('Training accuracy : %d %%' % (100 * train_correct / train_total))
+
+        y_hat.clear()
+        y.clear()
+
+        print("End of the epoch %d / %d \t Time Taken: %d sec" % (
+            epoch + 1, n_epochs, time.time() - epoch_start_time))
 
         scheduler.step(best_validation_accuracy)
 

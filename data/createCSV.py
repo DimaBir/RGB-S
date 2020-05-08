@@ -85,4 +85,4 @@ def createcsvfile(root_dir, log_file):
 
 
 if __name__ == '__main__':
-    createcsvfile("simulation_binary_1//", "simulation_log.txt")
+    createcsvfile("simulation_2\\binary\\", "simulation_log.txt")
