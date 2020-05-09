@@ -11,16 +11,16 @@ from models import vgg16_custom, create_model
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import ReduceLROnPlateau, StepLR
 
-PATH = config.RGB_ONLY_3_CHANNELS
 DATASET_PATH = r"D:\Github\RGB-S\data\simulation_2\binary\simulation_dataset.csv"
-# TODO: In final version make it arameter to function. ARGS
 
+# TODO: In final version make them as parameters to function. ARGS, for example
 RGB_CHANNELS = {
     "num": 3,
     "channels": {
         "R": True, "G": True, "B": True, "S1": False, "S2": False, "S3": False, "S4": False, "S5": False,
         "S6": False, "S7": False
-    }
+    },
+    "model_path": config.RGB_ONLY_3_CHANNELS
 }
 
 SPECTRAL_CHANNELS = {
@@ -28,7 +28,8 @@ SPECTRAL_CHANNELS = {
     "channels": {
         "R": False, "G": False, "B": False, "S1": True, "S2": True, "S3": True, "S4": True, "S5": True,
         "S6": True, "S7": True
-    }
+    },
+    "model_path": config.SPECTRAL_ONLY_7_CHANNELS
 }
 
 ALL_CHANNELS = {
@@ -36,18 +37,20 @@ ALL_CHANNELS = {
     "channels": {
         "R": True, "G": True, "B": True, "S1": True, "S2": True, "S3": True, "S4": True, "S5": True,
             "S6": True, "S7": True
-    }
+    },
+    "model_path": config.SPECTRAL_RGB_10_CHANNELS
 }
 
 DICTIONARY = RGB_CHANNELS
 
+PATH = DICTIONARY["model_path"]
 CHANNELS = DICTIONARY["channels"]
 NUM_OF_CHANNELS = DICTIONARY["num"]
 
 if __name__ == '__main__':
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-    # TODO: Move to parameters, clean code
+    # TODO: Move to parameters, CLEAN THE CODE
     n_epochs = 300
     batch_size = 64
     learning_rate = 0.1

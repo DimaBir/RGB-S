@@ -1,25 +1,28 @@
+import train
 import torch
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 from models import create_model
 from torch.utils.data import DataLoader
 from data import create_dataset, data_transform
-from utils import occlusion
+from utils import plot_confusion_matrix
 
-PATH = "rgb_s_cnn_with_spectral_10.pt"
+PATH = train.PATH
+CHANNELS = train.CHANNELS
+NUM_OF_CHANNELS = train.NUM_OF_CHANNELS
 
 if __name__ == '__main__':
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-    model = create_model().to(device)
+    model = create_model(num_of_channels=NUM_OF_CHANNELS).to(device)
     model.load_state_dict(torch.load(PATH))
     model.eval()
 
     test_dataset = create_dataset(path_to_csv=".//data//simulation_2//binary//simulation_dataset.csv",
                                   case="Test",
-                                  transform=data_transform())  # create a dataset
+                                  transform=data_transform(),
+                                  channels_vector=CHANNELS)  # create a dataset
 
     test_dataset_size = len(test_dataset)
     test_data_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
@@ -29,27 +32,31 @@ if __name__ == '__main__':
     total = 0
     y_hat = []
     y = []
+    predicted_arr = []
 
     for data in test_data_loader:
         images, labels = data
         [y.append(label.item()) for label in labels]
+
         images = images.type(torch.cuda.FloatTensor).to(device)
         labels = labels.type(torch.cuda.FloatTensor).to(device)
-        # heatmap = occlusion(model, images, labels[0].item(), 1, 1)
 
-        # imgplot = sns.heatmap(heatmap, xticklabels=False, yticklabels=False, vmax=1.)
-        # figure = imgplot.get_figure()
-        # figure.show()
         outputs = model.predict(images)
         total += labels.size(0)
         _, predicted = torch.max(outputs.data, 1)
 
-        if predicted == labels and predicted.item() == 0:
-            plt.imshow(np.moveaxis(images.cpu()[0].numpy()[0:1, :, :], 0, 2).reshape((128, 128)), cmap='gray')
-            plt.show()
+        # if predicted != labels and predicted.item() == 0:
+        #     image = images.cpu()[0].numpy()[0:3, :, :]
+        #     plt.imshow(np.moveaxis(image, 0, 2))
+        #     plt.show()
 
         correct += (predicted == labels).sum().item()
+        predicted_arr.append(predicted.item())
         [y_hat.append(output[1].item()) for output in outputs]
+
+    # confusion martix
+    plot_confusion_matrix(y, predicted_arr)
+
 
     y_hat_ones = []
     y_hat_zeros = []

@@ -1,8 +1,23 @@
 # custom function to conduct occlusion experiments
 import torch
 import numpy as np
+import pandas as pd
+import seaborn as sn
+import matplotlib.pyplot as plt
 
 from torch import nn
+from sklearn.metrics import confusion_matrix
+
+
+def plot_confusion_matrix(actual_labels, predicted_labels):
+    array = confusion_matrix(actual_labels, predicted_labels)
+    df_cm = pd.DataFrame(array, index=[i for i in ["GT: Healthy", "GT: Ill"]],
+                         columns=[i for i in ["PR: Healthy", "PR: Ill"]])
+
+    sn.set(font_scale=1.4)  # for label size
+    sn.heatmap(df_cm, annot=True, annot_kws={"size": 16}, cmap='Blues', fmt='d')  # font size
+
+    plt.show()
 
 
 def occlusion(model, image, label, occ_size=50, occ_stride=50, occ_pixel=0.5):
