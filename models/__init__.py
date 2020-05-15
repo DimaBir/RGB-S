@@ -38,11 +38,11 @@ class Net(nn.Module):
             file.write(str(epoch + 1))
 
     def predict(self, x):
-        ''' Predicts the labels of a mini-batch of inputs
+        """ Predicts the labels of a mini-batch of inputs
             @:param x: Input of NN
             @:return: Returns prediction for class with highest probability
             @:rtype: float
-        '''
+        """
         x = F.softmax(self.forward(x), dim=1)
         return x
 
