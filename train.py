@@ -146,7 +146,7 @@ if __name__ == '__main__':
     #  optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
 
     # factor = decaying factor
-    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=40, verbose=True)
+    # scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=40, verbose=True)
 
     best_validation_accuracy = 0.0
     epoch = 0
@@ -239,7 +239,7 @@ if __name__ == '__main__':
         print("End of the epoch %d / %d \t Time Taken: %d sec" % (
             epoch + 1, n_epochs, time.time() - epoch_start_time))
 
-        scheduler.step(best_validation_accuracy)
+        # scheduler.step(best_validation_accuracy)
 
         if epoch % 5 == 0:
             plt.plot(range(len(train_accuracy)), train_accuracy, '#FFA500', label='Training Acc')

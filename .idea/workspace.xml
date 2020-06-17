@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97d9caff-6cf8-4702-a6ca-4239d007394c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cnn_filter_visualizer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/misc_functions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/createCSV.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/createCSV.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/model3d.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +202,7 @@
       <workItem from="1591172748337" duration="15137000" />
       <workItem from="1591721320325" duration="16486000" />
       <workItem from="1591786049332" duration="76887000" />
-      <workItem from="1592389065265" duration="753000" />
+      <workItem from="1592389065265" duration="4255000" />
     </task>
     <task id="LOCAL‎00001" summary="Big Commit, I know">
       <created>1588934425409</created>
@@ -244,7 +234,13 @@
       <option name="presentableId" value="LOCAL‎00005" />
       <updated>1589962893503</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL‎00006" summary="NLLLoss, Adam, log of probabilities">
+      <created>1592389969832</created>
+      <option name="number" value="LOCAL‎00006" />
+      <option name="presentableId" value="LOCAL‎00006" />
+      <updated>1592389969832</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +252,8 @@
     <MESSAGE value="Code typo fixed" />
     <MESSAGE value="Added model with conv3d" />
     <MESSAGE value="Cleaned dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned dependencies" />
+    <MESSAGE value="NLLLoss, Adam, log of probabilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="NLLLoss, Adam, log of probabilities" />
   </component>
   <component name="WindowStateProjectService">
     <state x="770" y="359" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592032855952">
@@ -267,10 +264,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="942" y="278" width="878" height="593" key="#xdebugger.evaluate/0.0.2048.1112@0.0.2048.1112" timestamp="1592170133460" />
-    <state x="649" y="151" key="CommitChangelistDialog2" timestamp="1589962892802">
+    <state x="649" y="151" key="CommitChangelistDialog2" timestamp="1592389968956">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="649" y="151" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1589962892802" />
+    <state x="649" y="151" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1592389968956" />
     <state width="1652" height="466" key="DebuggerActiveHint" timestamp="1592153978460">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -315,10 +312,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="2005" height="295" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1592389291314" />
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1589962894971">
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1592389973900">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1589962894971" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1592389973900" />
     <state width="1031" height="563" key="XDebugger.FullValuePopup" timestamp="1592058355886">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
