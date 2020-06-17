@@ -6,8 +6,31 @@ import seaborn as sn
 import matplotlib.pyplot as plt
 
 from torch import nn
+from torchvision import transforms as T
 from sklearn.metrics import confusion_matrix
+from torchvision.transforms import functional as F
 
+
+def pad_if_smaller(img, size, fill=0):
+    min_size = min(img.size)
+    if min_size < size:
+        ow, oh = img.size
+        padh = size - oh if oh < size else 0
+        padw = size - ow if ow < size else 0
+        img = F.pad(img, (0, 0, padw, padh), fill=fill)
+    return img
+
+
+class RandomCrop(object):
+    def __init__(self, size):
+        self.size = size
+
+    def __call__(self, image):
+        # image = pad_if_smaller(image, self.size)
+        crop_params = T.RandomCrop.get_params(np.array(image), (self.size, self.size))
+        image = F.crop(image, *crop_params)
+
+        return image
 
 def plot_confusion_matrix(actual_labels, predicted_labels):
     array = confusion_matrix(actual_labels, predicted_labels)

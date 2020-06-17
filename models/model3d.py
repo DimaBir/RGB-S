@@ -7,7 +7,7 @@ class Net(nn.Module):
     def __init__(self, num_of_channels: int = 10):
         super(Net, self).__init__()
         # 128x128
-        self.conv1 = nn.Conv3d(num_of_channels, 64, kernel_size=3, stride=2, padding=1)
+        self.conv1 = nn.Conv3d(num_of_channels, 64, kernel_size=(3, 3, num_of_channels), stride=2, padding=1)
         self.pool = nn.MaxPool2d(2, 2)
         # 32x32
         self.conv2 = nn.Conv3d(64, 128, kernel_size=(3, 3, num_of_channels), stride=2, padding=1)

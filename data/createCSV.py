@@ -58,21 +58,28 @@ def createcsvfile(root_dir, log_file):
     df['image_B'] = [extractandsaveRGBchannels(image, 'b') for image in rgb_images]
 
     # Safe path to each spectral channel image
-    df['image_S1'] = [os.path.join(image_folder, image_and_label[0] + '_01.png') for image_and_label in images_and_labels]
-    df['image_S2'] = [os.path.join(image_folder, image_and_label[0] + '_02.png') for image_and_label in images_and_labels]
-    df['image_S3'] = [os.path.join(image_folder, image_and_label[0] + '_03.png') for image_and_label in images_and_labels]
-    df['image_S4'] = [os.path.join(image_folder, image_and_label[0] + '_04.png') for image_and_label in images_and_labels]
-    df['image_S5'] = [os.path.join(image_folder, image_and_label[0] + '_05.png') for image_and_label in images_and_labels]
-    df['image_S6'] = [os.path.join(image_folder, image_and_label[0] + '_06.png') for image_and_label in images_and_labels]
-    df['image_S7'] = [os.path.join(image_folder, image_and_label[0] + '_07.png') for image_and_label in images_and_labels]
+    df['image_S1'] = [os.path.join(image_folder, image_and_label[0] + '_01.png') for image_and_label in
+                      images_and_labels]
+    df['image_S2'] = [os.path.join(image_folder, image_and_label[0] + '_02.png') for image_and_label in
+                      images_and_labels]
+    df['image_S3'] = [os.path.join(image_folder, image_and_label[0] + '_03.png') for image_and_label in
+                      images_and_labels]
+    df['image_S4'] = [os.path.join(image_folder, image_and_label[0] + '_04.png') for image_and_label in
+                      images_and_labels]
+    df['image_S5'] = [os.path.join(image_folder, image_and_label[0] + '_05.png') for image_and_label in
+                      images_and_labels]
+    df['image_S6'] = [os.path.join(image_folder, image_and_label[0] + '_06.png') for image_and_label in
+                      images_and_labels]
+    df['image_S7'] = [os.path.join(image_folder, image_and_label[0] + '_07.png') for image_and_label in
+                      images_and_labels]
 
-    train_indexes = random.sample(range(0, len(df.index)), int(0.8*len(df.index)))
+    train_indexes = random.sample(range(0, len(df.index)), int(0.8 * len(df.index)))
     validation_test_indexes = [i for i in range(0, len(df.index)) if i not in train_indexes]
-    validation_indexes = [validation_test_indexes[i] for i in range(0, len(validation_test_indexes)) if i%2 == 0]
-    test_indexes = [validation_test_indexes[i] for i in range(0, len(validation_test_indexes)) if i%2 != 0]
+    validation_indexes = [validation_test_indexes[i] for i in range(0, len(validation_test_indexes)) if i % 2 == 0]
+    test_indexes = [validation_test_indexes[i] for i in range(0, len(validation_test_indexes)) if i % 2 != 0]
 
     # Labels
-    df['label'] = [image_and_label[1] for image_and_label in images_and_labels]
+    df['label'] = ['1' if '1' in list(image_and_label[1:]) else '0' for image_and_label in images_and_labels]
 
     case_column = []
     [case_column.insert(i, 'Train') for i in train_indexes]
@@ -85,4 +92,4 @@ def createcsvfile(root_dir, log_file):
 
 
 if __name__ == '__main__':
-    createcsvfile("simulation_2\\binary\\", "simulation_log.txt")
+    createcsvfile("simulation_3\\binary\\", "simulation_log.txt")

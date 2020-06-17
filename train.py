@@ -1,17 +1,17 @@
 import time
 import torch
 import config
+import numpy as np
 import torch.optim as optim
 import matplotlib.pyplot as plt
 
 
 from torch import nn
 from data import create_dataset, data_transform
-from models import vgg16_custom, create_model
+from models import vgg16_custom, create_model, model3d
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import ReduceLROnPlateau, StepLR
 
-DATASET_PATH = r"D:\Github\RGB-S\data\simulation_2\binary\simulation_dataset.csv"
 
 # TODO: In final version make them as parameters to function. ARGS, for example
 RGB_CHANNELS = {
@@ -20,7 +20,8 @@ RGB_CHANNELS = {
         "R": True, "G": True, "B": True, "S1": False, "S2": False, "S3": False, "S4": False, "S5": False,
         "S6": False, "S7": False
     },
-    "model_path": config.RGB_ONLY_3_CHANNELS
+    "model_path": config.RGB_ONLY_3_CHANNELS,
+    "dataset_path": r"D:\Github\RGB-S\data\simulation_3\binary\simulation_dataset.csv"
 }
 
 SPECTRAL_CHANNELS = {
@@ -29,7 +30,8 @@ SPECTRAL_CHANNELS = {
         "R": False, "G": False, "B": False, "S1": True, "S2": True, "S3": True, "S4": True, "S5": True,
         "S6": True, "S7": True
     },
-    "model_path": config.SPECTRAL_ONLY_7_CHANNELS
+    "model_path": config.SPECTRAL_ONLY_7_CHANNELS,
+    "dataset_path": r"D:\Github\RGB-S\data\simulation_3\binary\simulation_dataset.csv"
 }
 
 ALL_CHANNELS = {
@@ -38,7 +40,38 @@ ALL_CHANNELS = {
         "R": True, "G": True, "B": True, "S1": True, "S2": True, "S3": True, "S4": True, "S5": True,
             "S6": True, "S7": True
     },
-    "model_path": config.SPECTRAL_RGB_10_CHANNELS
+    "model_path": config.SPECTRAL_RGB_10_CHANNELS,
+    "dataset_path": r"D:\Github\RGB-S\data\simulation_3\binary\simulation_dataset.csv"
+}
+
+RGB_CHANNELS_MULTI = {
+    "num": 3,
+    "channels": {
+        "R": True, "G": True, "B": True, "S1": False, "S2": False, "S3": False, "S4": False, "S5": False,
+        "S6": False, "S7": False
+    },
+    "model_path": config.RGB_ONLY_3_CHANNELS_MULTI,
+    "dataset_path": r"D:\Github\RGB-S\data\simulation_3\multi\simulation_dataset.csv"
+}
+
+SPECTRAL_CHANNELS_MULTI = {
+    "num": 7,
+    "channels": {
+        "R": False, "G": False, "B": False, "S1": True, "S2": True, "S3": True, "S4": True, "S5": True,
+        "S6": True, "S7": True
+    },
+    "model_path": config.SPECTRAL_ONLY_7_CHANNELS_MULTI,
+    "dataset_path": r"D:\Github\RGB-S\data\simulation_3\multi\simulation_dataset.csv"
+}
+
+ALL_CHANNELS_MULTI = {
+    "num": 10,
+    "channels": {
+        "R": True, "G": True, "B": True, "S1": True, "S2": True, "S3": True, "S4": True, "S5": True,
+            "S6": True, "S7": True
+    },
+    "model_path": config.SPECTRAL_RGB_10_CHANNELS_MULTI,
+    "dataset_path": r"D:\Github\RGB-S\data\simulation_3\multi\simulation_dataset.csv"
 }
 
 DICTIONARY = RGB_CHANNELS
@@ -46,13 +79,33 @@ DICTIONARY = RGB_CHANNELS
 PATH = DICTIONARY["model_path"]
 CHANNELS = DICTIONARY["channels"]
 NUM_OF_CHANNELS = DICTIONARY["num"]
+DATASET_PATH = DICTIONARY["dataset_path"]
+
+
+def count_mean_and_std_for_dataset(data_loader):
+    mean = 0.
+    std = 0.
+    nb_samples = 0.
+    for data in data_loader:
+        batch_samples = data[0].size(0)
+        data = data[0].view(batch_samples, data[0].size(1), -1)
+        mean += data.mean(2).sum(0)
+        std += data.std(2).sum(0)
+        nb_samples += batch_samples
+
+    mean /= nb_samples
+    std /= nb_samples
+
+    print("mean: " + str(mean))
+    print("std: " + str(std))
+
 
 if __name__ == '__main__':
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # TODO: Move to parameters, CLEAN THE CODE
-    n_epochs = 300
-    batch_size = 64
+    n_epochs = 600
+    batch_size = 128
     learning_rate = 0.1
 
     # Model creation
@@ -77,40 +130,49 @@ if __name__ == '__main__':
     train_data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     validation_data_loader = DataLoader(validation_dataset, batch_size=1, shuffle=True)
 
+    # print('Train dataset stat: ')
+    # count_mean_and_std_for_dataset(train_data_loader)
+    #
+    # print('Validation dataset stat: ')
+    # count_mean_and_std_for_dataset(validation_data_loader)
+
     print("Model has been loaded successfully")
 
     if torch.cuda.is_available():
         model.cuda()
 
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9) # SGD, ADAM, RMSProp
+    criterion = nn.NLLLoss()
+    optimizer = optim.Adam(model.parameters())  # SGD, ADAM, RMSProp
+    #  optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
 
     # factor = decaying factor
-    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=20, verbose=True)
+    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=40, verbose=True)
 
     best_validation_accuracy = 0.0
     epoch = 0
     y_hat = []
     y = []
+    train_accuracy = []
+    val_accuracy = []
 
     for epoch in range(epoch, n_epochs):  # outer loop for different epochs;
-        epoch_start_time = time.time()  # timer for entire epoch
-        iter_data_time = time.time()  # timer for data loading per iteration
-        epoch_iter = 0  # the number of training iterations in current epoch, reset to 0 every epoch
+        epoch_start_time = time.time()    # timer for entire epoch
+        iter_data_time = time.time()      # timer for data loading per iteration
+        epoch_iter = 0                    # the number of training iterations in current epoch, reset to 0 every epoch
 
         train_total = 0
         train_correct = 0
-        total_iters = 0  # the total number of training iterations
+        total_iters = 0                   # the total number of training iterations
         running_loss = 0.0
         print("Start of epoch %d / %d" % (epoch + 1, n_epochs))
-        for data in train_data_loader:  # inner loop within one epoch
-            iter_start_time = time.time()  # timer for computation per iteration
+        for data in train_data_loader:    # inner loop within one epoch
+            iter_start_time = time.time() # timer for computation per iteration
 
             total_iters += batch_size
             epoch_iter += batch_size
 
-            # get the inputs; data is a list of [inputs, labels]
-            images, labels = data
+            # Get the inputs; data is a list of [inputs, labels]
+            images, labels, _ = data
             [y.append(label.item()) for label in labels]
             images = images.type(torch.cuda.FloatTensor).to(device)
             labels = labels.type(torch.cuda.FloatTensor).to(device)
@@ -125,7 +187,7 @@ if __name__ == '__main__':
             train_correct += (train_predicted == labels).sum().item()
             [y_hat.append(output[1].item()) for output in outputs]
 
-            loss = criterion(outputs, labels.long())
+            loss = criterion(torch.log(outputs), labels.long())
             loss.backward()
             optimizer.step()
 
@@ -138,7 +200,7 @@ if __name__ == '__main__':
             total = 0
             with torch.no_grad():
                 for val_data in validation_data_loader:
-                    val_images, val_labels = val_data
+                    val_images, val_labels, _ = val_data
                     val_images = val_images.type(torch.cuda.FloatTensor).to(device)
                     val_labels = val_labels.type(torch.cuda.FloatTensor).to(device)
 
@@ -155,6 +217,7 @@ if __name__ == '__main__':
                 torch.save(model.state_dict(), PATH)
                 print("Model saved")
 
+        val_accuracy.append(current_validation_acc)  # put last accuracy
         y_hat_ones = []
         y_hat_zeros = []
         [y_hat_ones.append(y_hat[i]) for i, j in enumerate(y) if j == 1.]
@@ -168,6 +231,7 @@ if __name__ == '__main__':
         plt.show()
 
         print('Training accuracy : %d %%' % (100 * train_correct / train_total))
+        train_accuracy.append(100 * train_correct / train_total)
 
         y_hat.clear()
         y.clear()
@@ -176,5 +240,14 @@ if __name__ == '__main__':
             epoch + 1, n_epochs, time.time() - epoch_start_time))
 
         scheduler.step(best_validation_accuracy)
+
+        if epoch % 5 == 0:
+            plt.plot(range(len(train_accuracy)), train_accuracy, '#FFA500', label='Training Acc')
+            plt.plot(range(len(val_accuracy)), val_accuracy, 'b', label='Validation Acc')
+            plt.title('Training and Validation accuracy')
+            plt.xlabel('Epoch')
+            plt.ylabel('Accuracy')
+            plt.legend()
+            plt.show()
 
     print('Finished Training')

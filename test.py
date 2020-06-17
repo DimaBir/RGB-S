@@ -19,7 +19,7 @@ if __name__ == '__main__':
     model.load_state_dict(torch.load(PATH))
     model.eval()
 
-    test_dataset = create_dataset(path_to_csv=".//data//simulation_2//binary//simulation_dataset.csv",
+    test_dataset = create_dataset(path_to_csv=".//data//simulation_2//multi//simulation_dataset.csv",
                                   case="Test",
                                   transform=data_transform(),
                                   channels_vector=CHANNELS)  # create a dataset
@@ -28,14 +28,17 @@ if __name__ == '__main__':
     test_data_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
 
     # Test
-    correct = 0
-    total = 0
-    y_hat = []
     y = []
+    y_hat = []
     predicted_arr = []
 
+    total = 0
+    correct = 0
+
+    print('The number of test images: {}'.format(test_dataset_size))
+
     for data in test_data_loader:
-        images, labels = data
+        images, labels, image_index = data
         [y.append(label.item()) for label in labels]
 
         images = images.type(torch.cuda.FloatTensor).to(device)
@@ -45,18 +48,35 @@ if __name__ == '__main__':
         total += labels.size(0)
         _, predicted = torch.max(outputs.data, 1)
 
-        # if predicted != labels and predicted.item() == 0:
-        #     image = images.cpu()[0].numpy()[0:3, :, :]
-        #     plt.imshow(np.moveaxis(image, 0, 2))
-        #     plt.show()
+        if predicted != labels:  # and predicted.item() == 0:   and img_index <= 40:
+            path_to_image = ""
+            image = images.cpu()[0].numpy()[0:3, :, :]
+
+            # Save images
+            plt.imshow(np.moveaxis(image, 0, 2))
+            if predicted.item() == 1:
+                plt.savefig('./results/false_positive/fp_' + str(image_index[0]) + '_RGB.png')
+            else:
+                plt.savefig('./results/false_negative/fn_' + str(image_index[0]) + '_RGB.png')
+
+            # i = 3
+            # for channel in ["s1", "s2", "s3", "s4", "s5", "s6", "s7"]:
+            #     if predicted.item() == 0:
+            #         path_to_image = './results/false_positive/fp_' + str(img_index) + '_' + channel + '.png'
+            #     else:
+            #         path_to_image = './results/false_negative/fn_' + str(img_index) + '_' + channel + '.png'
+            #
+            #     image = images.cpu()[0].numpy()[i, :, :]
+            #     plt.imshow(image, cmap="gray")  # np.moveaxis(image, 0, 2))
+            #     plt.savefig(path_to_image)
+            #     i = i + 1
 
         correct += (predicted == labels).sum().item()
         predicted_arr.append(predicted.item())
         [y_hat.append(output[1].item()) for output in outputs]
 
-    # confusion martix
+    # Confusion Matrix
     plot_confusion_matrix(y, predicted_arr)
-
 
     y_hat_ones = []
     y_hat_zeros = []

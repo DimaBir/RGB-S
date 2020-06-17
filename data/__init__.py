@@ -1,10 +1,20 @@
+import os
+
+from torch import nn
+
+import utils
 import torch
+import random
+import kornia
+import kornia.augmentation as K
 import numpy as np
 import pandas as pd
 
+
 from PIL import Image
-from torch.utils.data import Dataset
+import matplotlib.pyplot as plt
 from torchvision import transforms
+from torch.utils.data import Dataset
 
 
 class BananaRustsOneDataset(Dataset):
@@ -115,15 +125,29 @@ class BananaRustsOneDataset(Dataset):
                 j = j + 1
 
             i = i + 1
-
-        # plt.imshow(np.uint8(conc_array[:, :, 0:3])) # we can show only 3 channels, so we will take first 3 always
-        # plt.show()
+        # Normalize
         image = np.uint8(conc_array[:, :, :])/255
 
+        # Transform
         if self.transform:
             image = self.transform(image)
 
-        return image, row['label']
+            # Kornia`s transform
+            k_transform = nn.Sequential(
+                K.RandomHorizontalFlip(p=0.5),
+                K.RandomRotation(degrees=5.0),
+            )
+
+            # Augmentation
+            # a = image[0].numpy()
+            # plt.imshow(a)
+            # plt.show()
+            image = k_transform(image)[0]  # why does it adds 1-d after transform? [3, 128, 128] -> [1, 3, 128, 128]
+            # a = image[0].numpy()
+            # plt.imshow(a)
+            # plt.show()
+
+        return image, row['label'], os.path.split(row['image_path'])[1]
 
 
 def create_dataset(path_to_csv: object, case: object, channels_vector: dict, transform: object) -> object:
@@ -137,9 +161,10 @@ def create_dataset(path_to_csv: object, case: object, channels_vector: dict, tra
 
 def data_transform():
     transform = transforms.Compose([
-        # transforms.RandomHorizontalFlip(),
+        # transforms.Resize((128, 128)),
         # transforms.RandomRotation(degrees=30),
         transforms.ToTensor(),
+        # transforms.RandomHorizontalFlip(),
         # transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
     ])
 
