@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97d9caff-6cf8-4702-a6ca-4239d007394c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data/crateSpectralCSV.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +232,7 @@
       <workItem from="1596212778314" duration="776000" />
       <workItem from="1596213566194" duration="26371000" />
       <workItem from="1596365221165" duration="10589000" />
-      <workItem from="1596435210895" duration="24340000" />
+      <workItem from="1596435210895" duration="25304000" />
     </task>
     <task id="LOCAL‎00001" summary="Big Commit, I know">
       <created>1588934425409</created>
@@ -281,7 +276,13 @@
       <option name="presentableId" value="LOCAL‎00007" />
       <updated>1592396120789</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎00008" summary="RGB - 93%, Spectral 78% - overfit">
+      <created>1596528966669</created>
+      <option name="number" value="LOCAL‎00008" />
+      <option name="presentableId" value="LOCAL‎00008" />
+      <updated>1596528966669</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +296,8 @@
     <MESSAGE value="Cleaned dependencies" />
     <MESSAGE value="NLLLoss, Adam, log of probabilities" />
     <MESSAGE value="Adam doesnt need scheduler" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adam doesnt need scheduler" />
+    <MESSAGE value="RGB - 93%, Spectral 78% - overfit" />
+    <option name="LAST_COMMIT_MESSAGE" value="RGB - 93%, Spectral 78% - overfit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="770" y="359" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592032855952">
@@ -310,10 +312,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="-2" y="128" width="1783" height="984" key="#xdebugger.evaluate/0.0.2048.1112@0.0.2048.1112" timestamp="1596449179999" />
-    <state x="649" y="151" key="CommitChangelistDialog2" timestamp="1592396120295">
+    <state x="649" y="151" key="CommitChangelistDialog2" timestamp="1596528966076">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="649" y="151" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1592396120295" />
+    <state x="649" y="151" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1596528966076" />
     <state width="1652" height="466" key="DebuggerActiveHint" timestamp="1596438580943">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -326,42 +328,42 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="804" y="331" key="FileChooserDialogImpl/0.0.2048.1112@0.0.2048.1112" timestamp="1596371306449" />
-    <state width="2005" height="271" key="GridCell.Tab.0.bottom" timestamp="1596480105042">
+    <state width="2005" height="245" key="GridCell.Tab.0.bottom" timestamp="1596529857567">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="271" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1596480105042" />
-    <state width="2005" height="271" key="GridCell.Tab.0.center" timestamp="1596480105042">
+    <state width="2005" height="245" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1596529857567" />
+    <state width="2005" height="245" key="GridCell.Tab.0.center" timestamp="1596529857567">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="271" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1596480105042" />
-    <state width="2005" height="271" key="GridCell.Tab.0.left" timestamp="1596480105042">
+    <state width="2005" height="245" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1596529857567" />
+    <state width="2005" height="245" key="GridCell.Tab.0.left" timestamp="1596529857567">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="271" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1596480105042" />
-    <state width="2005" height="271" key="GridCell.Tab.0.right" timestamp="1596480105042">
+    <state width="2005" height="245" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1596529857567" />
+    <state width="2005" height="245" key="GridCell.Tab.0.right" timestamp="1596529857567">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="271" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1596480105042" />
-    <state width="2005" height="245" key="GridCell.Tab.1.bottom" timestamp="1596453291411">
+    <state width="2005" height="245" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1596529857567" />
+    <state width="2005" height="245" key="GridCell.Tab.1.bottom" timestamp="1596529862728">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="245" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1596453291411" />
-    <state width="2005" height="245" key="GridCell.Tab.1.center" timestamp="1596453291411">
+    <state width="2005" height="245" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1596529862728" />
+    <state width="2005" height="245" key="GridCell.Tab.1.center" timestamp="1596529862728">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="245" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1596453291411" />
-    <state width="2005" height="245" key="GridCell.Tab.1.left" timestamp="1596453291411">
+    <state width="2005" height="245" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1596529862728" />
+    <state width="2005" height="245" key="GridCell.Tab.1.left" timestamp="1596529862727">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="245" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1596453291411" />
-    <state width="2005" height="245" key="GridCell.Tab.1.right" timestamp="1596453291411">
+    <state width="2005" height="245" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1596529862727" />
+    <state width="2005" height="245" key="GridCell.Tab.1.right" timestamp="1596529862728">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="245" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1596453291411" />
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1592396122303">
+    <state width="2005" height="245" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1596529862728" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1596528976421">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1592396122303" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1596528976421" />
     <state width="1031" height="563" key="XDebugger.FullValuePopup" timestamp="1596449120569">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -479,8 +481,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/__init__.py</url>
-          <line>20</line>
+          <line>27</line>
           <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data/__init__.py</url>
+          <line>145</line>
+          <option name="timeStamp" value="186" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data/__init__.py</url>
+          <line>150</line>
+          <option name="timeStamp" value="187" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -499,7 +511,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/RGB_S$train.coverage" NAME="train Coverage Results" MODIFIED="1596453272969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/RGB_S$train.coverage" NAME="train Coverage Results" MODIFIED="1596529857454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/RGB_S$createCSV.coverage" NAME="createCSV Coverage Results" MODIFIED="1591785530838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/RGB_S$crateSpectralCSV.coverage" NAME="crateSpectralCSV Coverage Results" MODIFIED="1596046795990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/RGB_S$test.coverage" NAME="test Coverage Results" MODIFIED="1596479902089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

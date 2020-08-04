@@ -136,6 +136,7 @@ class BananaRustsOneDataset(Dataset):
             k_transform = nn.Sequential(
                 K.RandomHorizontalFlip(p=0.5),
                 K.RandomRotation(degrees=5.0),
+                K.RandomCrop(size=(128, 128), padding=(10, 10))
             )
 
             # Augmentation
