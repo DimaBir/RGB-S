@@ -17,9 +17,6 @@ class Net(nn.Module):
         self.fc1 = nn.Linear(256 * 2 * 2, 1024)
         self.fc2 = nn.Linear(1024, 512)
         self.fc3 = nn.Linear(512, 2)
-        # Dropout
-        self.dropout1 = nn.Dropout(0.2)
-        self.dropout2 = nn.Dropout(0.5)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))
@@ -32,6 +29,17 @@ class Net(nn.Module):
         x = self.fc3(x)
         return x
 
+    def predict(self, x):
+        """ Predicts the labels of a mini-batch of inputs
+            @:param x: Input of NN
+            @:return: Returns prediction for class with highest probability
+            @:rtype: float
+        """
+        # x = F.softmax(self.forward(x), dim=1)
+        m = nn.LogSoftmax(dim=1)
+        x = m(self.forward(x))
+        return x
+
     def save_networks(self, model_folder, optimizer, epoch):
         # Save models checkpoints
         torch.save({'optimizer_state_dict': optimizer.state_dict()}, model_folder)
@@ -40,14 +48,7 @@ class Net(nn.Module):
         with open(model_folder, 'w+') as file:
             file.write(str(epoch + 1))
 
-    def predict(self, x):
-        """ Predicts the labels of a mini-batch of inputs
-            @:param x: Input of NN
-            @:return: Returns prediction for class with highest probability
-            @:rtype: float
-        """
-        x = F.softmax(self.forward(x), dim=1)
-        return x
+
 
 
 def create_model(num_of_channels: int):

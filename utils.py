@@ -11,6 +11,62 @@ from sklearn.metrics import confusion_matrix
 from torchvision.transforms import functional as F
 
 
+class SaveOutput:
+    def __init__(self):
+        self.outputs = []
+
+    def __call__(self, module, module_in, module_out):
+        self.outputs.append(module_out)
+
+    def clear(self):
+        self.outputs = []
+
+
+def printgradnorm(self, grad_input, grad_output):
+    print('Inside ' + self.__class__.__name__ + ' backward')
+    # print('Inside class:' + self.__class__.__name__)
+    # print('')
+    # print('grad_input: ', type(grad_input))
+    # print('grad_input[0]: ', type(grad_input[0]))
+    # print('grad_output: ', type(grad_output))
+    # print('grad_output[0]: ', type(grad_output[0]))
+    # print('')
+    # print('grad_input size:', grad_input[0].size())
+    # print('grad_output size:', grad_output[0].size())
+    print('grad_input norm:', grad_input[0].norm().item())
+
+
+def display_multiple_img(images, rows = 1, cols=1, scale = 1.):
+    axes = []
+    fig = plt.figure(figsize=(scale, scale))
+
+    for i in range(rows * cols):
+        img = images[i]
+        axes.append(fig.add_subplot(rows, cols, i + 1))
+        plt.imshow(img, cmap = "gray")
+    fig.tight_layout()
+    plt.show()
+
+
+
+def matplot_plot_images_dict(data_dict, size_scale=1., title=""):
+    i, columns = 0, len(data_dict)
+    scale = columns * size_scale  # you can play with it
+    plt.figure(figsize=(scale, scale))
+    for key, data in data_dict.items():
+        i, ax = i + 1, plt.subplot(1, columns, i + 1)
+        if data.ndim == 3:
+            tmp_img = data# np.moveaxis(data, 0, 2)
+        else:  # 2D gray image, no changes needed
+            tmp_img = data
+        plt.imshow(tmp_img, cmap='gray')
+        ax.text(0.5, -0.3, key, size=14, ha="center", transform=ax.transAxes)
+    plt.title(label=title,
+              fontsize=20,
+              color="green")
+    plt.show()
+
+
 def pad_if_smaller(img, size, fill=0):
     min_size = min(img.size)
     if min_size < size:
