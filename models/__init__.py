@@ -9,14 +9,14 @@ class Net(nn.Module):
         # CONV + MAXPOOL
         # 128x128
         self.conv1 = nn.Conv2d(num_of_channels, 64, kernel_size=3, stride=2, padding=1)
-        # self.conv1_bn = nn.BatchNorm2d(64)
+        self.conv1_bn = nn.BatchNorm2d(64)
         self.pool = nn.MaxPool2d(2, 2)
         # 32x32
         self.conv2 = nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1)
-        # self.conv2_bn = nn.BatchNorm2d(128)
+        self.conv2_bn = nn.BatchNorm2d(128)
         # 8x8
         self.conv3 = nn.Conv2d(128, 256, kernel_size=3, stride=2, padding=1)
-        # self.conv3_bn = nn.BatchNorm2d(256)
+        self.conv3_bn = nn.BatchNorm2d(256)
         # 2x2
 
         # Dropouts
@@ -29,11 +29,11 @@ class Net(nn.Module):
         self.fc3 = nn.Linear(512, 2)
 
     def forward(self, x):
-        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv1_bn(self.conv1(x))))
         x = self.dropout1(x)
-        x = self.pool(F.relu(self.conv2(x)))
+        x = self.pool(F.relu(self.conv2_bn(self.conv2(x))))
         # x = self.dropout1(x)
-        x = self.pool(F.relu(self.conv3(x)))
+        x = self.pool(F.relu(self.conv3_bn(self.conv3(x))))
         # x = self.dropout1(x)
         # Flatten
         x = x.view(-1, 256 * 2 * 2)
