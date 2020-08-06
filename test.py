@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     model = create_model(num_of_channels=NUM_OF_CHANNELS).to(device)
 
-    preatrained_model = torch.load(config.RGB_ONLY_3_CHANNELS)
+    # preatrained_model = torch.load(config.RGB_ONLY_3_CHANNELS)
 
     # print('\n============== conv1.weight ===================')
     # print("Min: " + str(torch.min(preatrained_model['conv1.weight']).item()))
