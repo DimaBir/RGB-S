@@ -32,13 +32,13 @@ class Net(nn.Module):
         x = self.pool(F.relu(self.conv1_bn(self.conv1(x))))
         x = self.dropout1(x)
         x = self.pool(F.relu(self.conv2_bn(self.conv2(x))))
-        # x = self.dropout1(x)
+        x = self.dropout1(x)
         x = self.pool(F.relu(self.conv3_bn(self.conv3(x))))
         # x = self.dropout1(x)
         # Flatten
         x = x.view(-1, 256 * 2 * 2)
         x = F.relu(self.fc1(x))
-        # x = self.dropout2(x)
+        x = self.dropout2(x)
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
         return x

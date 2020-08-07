@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +239,7 @@
       <workItem from="1596365221165" duration="10589000" />
       <workItem from="1596435210895" duration="51709000" />
       <workItem from="1596703367083" duration="7504000" />
-      <workItem from="1596732501894" duration="10202000" />
+      <workItem from="1596732501894" duration="16041000" />
     </task>
     <task id="LOCAL‎00001" summary="Big Commit, I know">
       <created>1588934425409</created>
@@ -306,7 +307,13 @@
       <option name="presentableId" value="LOCAL‎00011" />
       <updated>1596730160055</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="Added bn Val 85%">
+      <created>1596745554833</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1596745554833</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,7 +331,8 @@
     <MESSAGE value="Added random crop transformation" />
     <MESSAGE value="Added Dropout" />
     <MESSAGE value="Added Dropout + Augm Val 82%" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Dropout + Augm Val 82%" />
+    <MESSAGE value="Added bn Val 85%" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added bn Val 85%" />
   </component>
   <component name="WindowStateProjectService">
     <state x="770" y="359" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592032855952">
@@ -339,10 +347,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="-2" y="128" width="1783" height="984" key="#xdebugger.evaluate/0.0.2048.1112@0.0.2048.1112" timestamp="1596449179999" />
-    <state x="649" y="151" key="CommitChangelistDialog2" timestamp="1596730159538">
+    <state x="649" y="151" key="CommitChangelistDialog2" timestamp="1596745553341">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="649" y="151" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1596730159538" />
+    <state x="649" y="151" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1596745553341" />
     <state width="1652" height="466" key="DebuggerActiveHint" timestamp="1596438580943">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -387,10 +395,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="2005" height="245" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1596703352217" />
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1596730162702">
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1596745971455">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1596730162702" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1596745971455" />
     <state width="1031" height="563" key="XDebugger.FullValuePopup" timestamp="1596449120569">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>

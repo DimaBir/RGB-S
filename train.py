@@ -189,7 +189,7 @@ if __name__ == '__main__':
         model.cuda()
 
     criterion = nn.NLLLoss()
-    optimizer = optim.Adam(model.parameters())# , weight_decay=1e-4)  # SGD, ADAM, RMSProp
+    optimizer = optim.Adam(model.parameters(), weight_decay=1e-4)  # SGD, ADAM, RMSProp
     #  optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
 
     # factor = decaying factor
