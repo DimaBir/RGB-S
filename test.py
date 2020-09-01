@@ -1,3 +1,5 @@
+import os
+
 import train
 import torch
 import config
@@ -7,13 +9,15 @@ import matplotlib.pyplot as plt
 from models import create_model
 from torch.utils.data import DataLoader
 from data import create_dataset, data_transform
-from utils import plot_confusion_matrix, SaveOutput, matplot_plot_images_dict, display_multiple_img, printgradnorm
+from utils import plot_confusion_matrix, SaveOutput, matplot_plot_images_dict, display_multiple_img, printgradnorm, \
+    UnNormalize
 from mpl_toolkits.axes_grid1 import ImageGrid
 
 PATH = train.PATH
 CHANNELS = train.CHANNELS
 NUM_OF_CHANNELS = train.NUM_OF_CHANNELS
 DATASET_PATH = train.DATASET_PATH
+RESULTS_FOLDER = train.DICTIONARY["results_folder"]
 
 if __name__ == '__main__':
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -111,14 +115,21 @@ if __name__ == '__main__':
 
         if predicted != labels:  # and predicted.item() == 0:   and img_index <= 40:
             path_to_image = ""
-            image = images.cpu()[0].numpy()[0:3, :, :]
+            unorm = UnNormalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
+            image = unorm(images.cpu()[0])
+            image = image.numpy()[0:3, :, :]
 
             # Save images
             plt.imshow(np.moveaxis(image, 0, 2))
+
             if predicted.item() == 1:
-                plt.savefig('./results/false_positive/fp_' + str(image_index[0]) + '_RGB.png')
+                if not os.path.exists(os.path.dirname(RESULTS_FOLDER + '\\false_positive\\fp_')):
+                    os.makedirs(os.path.dirname(RESULTS_FOLDER + '\\false_positive\\fp_'))
+                plt.savefig(RESULTS_FOLDER + '\\false_positive\\fp_' + str(image_index[0]) + '_RGB.png')
             else:
-                plt.savefig('./results/false_negative/fn_' + str(image_index[0]) + '_RGB.png')
+                if not os.path.exists(os.path.dirname(RESULTS_FOLDER + '\\false_negative\\fn_')):
+                    os.makedirs(os.path.dirname(RESULTS_FOLDER + '\\false_negative\\fn_'))
+                plt.savefig(RESULTS_FOLDER + '\\false_negative\\fn_' + str(image_index[0]) + '_RGB.png')
 
             # i = 3
             # for channel in ["s1", "s2", "s3", "s4", "s5", "s6", "s7"]:
@@ -137,7 +148,7 @@ if __name__ == '__main__':
         [y_hat.append(output[1].item()) for output in outputs]
 
     # Confusion Matrix
-    plot_confusion_matrix(y, predicted_arr)
+    plot_confusion_matrix(RESULTS_FOLDER, y, predicted_arr)
 
     y_hat_ones = []
     y_hat_zeros = []
@@ -150,6 +161,7 @@ if __name__ == '__main__':
     plt.gca().set(title='Freq vs Prob of Class [1]; Test Accuracy: %d %%' %
                         (100 * correct / total), ylabel='Frequency')
     plt.legend()
+    plt.savefig(RESULTS_FOLDER + '\\test_' + str(int((100 * correct / total))) + '.png')
     plt.show()
 
     y_hat.clear()

@@ -126,7 +126,7 @@ class BananaRustsOneDataset(Dataset):
 
             i = i + 1
         # Normalize
-        image = np.uint8(conc_array[:, :, :])/255
+        image = np.uint8(conc_array[:, :, :])#/255
 
         # Transform
         if self.transform:
@@ -167,7 +167,7 @@ def data_transform():
         # transforms.RandomRotation(degrees=30),
         transforms.ToTensor(),
         # transforms.RandomHorizontalFlip(),
-        # transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
+        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
     ])
 
     return transform

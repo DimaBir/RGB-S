@@ -1,4 +1,6 @@
 # custom function to conduct occlusion experiments
+import os
+
 import torch
 import numpy as np
 import pandas as pd
@@ -9,6 +11,24 @@ from torch import nn
 from torchvision import transforms as T
 from sklearn.metrics import confusion_matrix
 from torchvision.transforms import functional as F
+
+
+class UnNormalize(object):
+    def __init__(self, mean, std):
+        self.mean = mean
+        self.std = std
+
+    def __call__(self, tensor):
+        """
+        Args:
+            tensor (Tensor): Tensor image of size (C, H, W) to be normalized.
+        Returns:
+            Tensor: Normalized image.
+        """
+        for t, m, s in zip(tensor, self.mean, self.std):
+            t.mul_(s).add_(m)
+            # The normalize code -> t.sub_(m).div_(s)
+        return tensor
 
 
 class SaveOutput:
@@ -88,7 +108,8 @@ class RandomCrop(object):
 
         return image
 
-def plot_confusion_matrix(actual_labels, predicted_labels):
+
+def plot_confusion_matrix(folder, actual_labels, predicted_labels):
     array = confusion_matrix(actual_labels, predicted_labels)
     df_cm = pd.DataFrame(array, index=[i for i in ["GT: Healthy", "GT: Ill"]],
                          columns=[i for i in ["PR: Healthy", "PR: Ill"]])
@@ -96,6 +117,7 @@ def plot_confusion_matrix(actual_labels, predicted_labels):
     sn.set(font_scale=1.4)  # for label size
     sn.heatmap(df_cm, annot=True, annot_kws={"size": 16}, cmap='Blues', fmt='d')  # font size
 
+    plt.savefig(folder + '\\confusion_matrix.png')
     plt.show()
 
 
