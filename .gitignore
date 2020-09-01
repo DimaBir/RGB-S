@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 # C extensions
+# C extensions
 *.so
 
 # Distribution / packaging
@@ -133,3 +134,4 @@ dmypy.json
 *.png
 
 *.pt
+/data/
