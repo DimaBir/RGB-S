@@ -44,11 +44,14 @@ class Net(nn.Module):
 
     # RGB - best results
     def forward(self, x):
-        x = self.pool(F.relu(self.conv1(x)))
-        # x = self.dropout1(x)
-        x = self.pool(F.relu(self.conv2(x)))
-        # x = self.dropout1(x)
-        x = self.pool(F.relu(self.conv3(x)))
+        x = self.pool(F.relu(self.conv1_bn(self.conv1(x))))
+        x = self.pool(F.relu(self.conv2_bn(self.conv2(x))))
+        x = self.pool(F.relu(self.conv3_bn(self.conv3(x))))
+        # x = self.pool(F.relu(self.conv1(x)))
+        # # x = self.dropout1(x)
+        # x = self.pool(F.relu(self.conv2(x)))
+        # # x = self.dropout1(x)
+        # x = self.pool(F.relu(self.conv3(x)))
         # x = self.dropout1(x)
         # Flatten
         x = x.view(-1, x.size(1) * x.size(2) * x.size(3))
