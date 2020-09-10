@@ -82,9 +82,9 @@ def createcsvfile(root_dir, log_file):
     df['label'] = ['1' if '1' in list(image_and_label[1:]) else '0' for image_and_label in images_and_labels]
 
     case_column = []
-    [case_column.insert(i, 'Train') for i in train_indexes]
-    [case_column.insert(i, 'Test') for i in test_indexes]
-    [case_column.insert(i, 'Validation') for i in validation_indexes]
+    [case_column.insert(i, 'train') for i in train_indexes]
+    [case_column.insert(i, 'test') for i in test_indexes]
+    [case_column.insert(i, 'validation') for i in validation_indexes]
 
     df['case'] = case_column
 
@@ -92,4 +92,4 @@ def createcsvfile(root_dir, log_file):
 
 
 if __name__ == '__main__':
-    createcsvfile("simulation_3\\binary\\", "simulation_log.txt")
+    createcsvfile("simulation_3\\multi\\", "simulation_log.txt")
