@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97d9caff-6cf8-4702-a6ca-4239d007394c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnn_filter_visualizer.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc_functions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/createCSV.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/createCSV.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_transform.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/options/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/options/base_options.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/vgg16_custom.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
@@ -62,18 +59,18 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/saved_models/RGB_ONLY_3_CHANNELS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/train.py" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Github\RGB-S\saved_models" />
-      <recent name="D:\Github\RGB-S" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Github\RGB-S\saved_models\RGB_ONLY_3_CHANNELS" />
       <recent name="D:\Github\RGB-S\data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Github\RGB-S\saved_models" />
+      <recent name="D:\Github\RGB-S" />
     </key>
   </component>
   <component name="RunManager" selected="Python.train">
@@ -143,13 +140,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="createCSV" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="createCSV" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="RGB-S" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="C:\Users\v.dmitry\.conda\envs\RGB-S\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -165,22 +159,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="generateCSV" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RGB-S" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="C:\Users\v.dmitry\.conda\envs\RGB-S\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/generateCSV.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -206,19 +197,41 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="RGB-S" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\v.dmitry\.conda\envs\RGB-S\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train.py" />
+      <option name="PARAMETERS" value="--settings BIG_SPECTRAL_CHANNELS_MULTI" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.test" />
+      <item itemvalue="Python.train" />
+      <item itemvalue="Python.createCSV" />
+      <item itemvalue="Python.generateCSV" />
       <item itemvalue="Python.cnn_filter_visualizer" />
       <item itemvalue="Python.crateSpectralCSV" />
-      <item itemvalue="Python.createCSV" />
-      <item itemvalue="Python.train" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.train" />
+        <item itemvalue="Python.generateCSV" />
         <item itemvalue="Python.crateSpectralCSV" />
         <item itemvalue="Python.cnn_filter_visualizer" />
-        <item itemvalue="Python.createCSV" />
       </list>
     </recent_temporary>
   </component>
@@ -269,7 +282,8 @@
       <workItem from="1598255751964" duration="8770000" />
       <workItem from="1598271999442" duration="4767000" />
       <workItem from="1598280899958" duration="8594000" />
-      <workItem from="1598945748776" duration="12866000" />
+      <workItem from="1598945748776" duration="16746000" />
+      <workItem from="1598998601129" duration="54670000" />
     </task>
     <task id="LOCAL‎00001" summary="Big Commit, I know">
       <created>1588934425409</created>
@@ -349,7 +363,25 @@
       <option name="presentableId" value="LOCAL‎00013" />
       <updated>1596779450184</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL‎00014" summary="Organized files">
+      <created>1598975946842</created>
+      <option name="number" value="LOCAL‎00014" />
+      <option name="presentableId" value="LOCAL‎00014" />
+      <updated>1598975946842</updated>
+    </task>
+    <task id="LOCAL‎00015" summary="gitignore data folder">
+      <created>1598976129332</created>
+      <option name="number" value="LOCAL‎00015" />
+      <option name="presentableId" value="LOCAL‎00015" />
+      <updated>1598976129332</updated>
+    </task>
+    <task id="LOCAL‎00016" summary="SPECTRAL_3_CHANNELS_test_84">
+      <created>1599063354775</created>
+      <option name="number" value="LOCAL‎00016" />
+      <option name="presentableId" value="LOCAL‎00016" />
+      <updated>1599063354775</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,12 +401,16 @@
     <MESSAGE value="Added Dropout + Augm Val 82%" />
     <MESSAGE value="Added bn Val 85%" />
     <MESSAGE value="Added weight_decay_1e-4, added dropout(0.25) on second conv layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added weight_decay_1e-4, added dropout(0.25) on second conv layer" />
+    <MESSAGE value="Organized files" />
+    <MESSAGE value="gitignore data folder" />
+    <MESSAGE value="SPECTRAL_3_CHANNELS_test_84" />
+    <option name="LAST_COMMIT_MESSAGE" value="SPECTRAL_3_CHANNELS_test_84" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="749" y="228" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598280739756">
-      <screen x="0" y="0" width="2048" height="1112" />
+    <state x="702" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599686188250">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="702" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599686188250" />
     <state x="749" y="228" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1598280739756" />
     <state x="770" y="359" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592032855952">
       <screen x="0" y="0" width="2048" height="1112" />
@@ -384,62 +420,85 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="902" y="309" key="#xdebugger.XInspectDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1596212311464" />
-    <state x="174" y="128" width="1783" height="984" key="#xdebugger.evaluate" timestamp="1598962863635">
-      <screen x="0" y="0" width="2048" height="1112" />
+    <state x="0" y="0" width="1920" height="1040" key="#xdebugger.evaluate" timestamp="1599684358918">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="116" y="83" key="#xdebugger.evaluate/0.0.1366.728@0.0.1366.728" timestamp="1599553704578" />
+    <state x="0" y="0" width="1920" height="1040" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1599684358918" />
     <state x="174" y="128" width="1783" height="984" key="#xdebugger.evaluate/0.0.2048.1112@0.0.2048.1112" timestamp="1598962863635" />
-    <state x="649" y="151" key="CommitChangelistDialog2" timestamp="1596779449571">
-      <screen x="0" y="0" width="2048" height="1112" />
+    <state x="433" y="0" key="CommitChangelistDialog2" timestamp="1599063354003">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="649" y="151" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1596779449571" />
-    <state width="1652" height="466" key="DebuggerActiveHint" timestamp="1596438580943">
-      <screen x="0" y="0" width="2048" height="1112" />
+    <state x="433" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599063354003" />
+    <state x="649" y="151" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1598976128634" />
+    <state width="1549" height="438" key="DebuggerActiveHint" timestamp="1599682105008">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1102" height="306" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1599553877080" />
+    <state width="1549" height="438" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1599682105008" />
     <state width="1652" height="466" key="DebuggerActiveHint/0.0.2048.1112@0.0.2048.1112" timestamp="1596438580943" />
-    <state x="93" y="93" width="1862" height="926" key="DiffContextDialog" timestamp="1598952136023">
+    <state x="93" y="93" width="1862" height="926" key="DiffContextDialog" timestamp="1599502407145">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="93" y="93" width="1862" height="926" key="DiffContextDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1598952136023" />
-    <state x="804" y="331" key="FileChooserDialogImpl" timestamp="1597043039625">
-      <screen x="0" y="0" width="2048" height="1112" />
+    <state x="93" y="93" width="1862" height="926" key="DiffContextDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1599502407145" />
+    <state x="753" y="297" key="FileChooserDialogImpl" timestamp="1599686102871">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="536" y="208" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599592864809" />
+    <state x="753" y="297" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599686102871" />
     <state x="804" y="331" key="FileChooserDialogImpl/0.0.2048.1112@0.0.2048.1112" timestamp="1597043039625" />
-    <state width="2005" height="271" key="GridCell.Tab.0.bottom" timestamp="1598973430237">
+    <state width="1877" height="362" key="GridCell.Tab.0.bottom" timestamp="1599722456397">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="155" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599574402324" />
+    <state width="1877" height="362" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599722456397" />
+    <state width="2005" height="268" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1599503175042" />
+    <state width="1877" height="362" key="GridCell.Tab.0.center" timestamp="1599722456397">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="155" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599574402324" />
+    <state width="1877" height="362" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599722456397" />
+    <state width="2005" height="268" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1599503175042" />
+    <state width="1877" height="362" key="GridCell.Tab.0.left" timestamp="1599722456397">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="155" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599574402323" />
+    <state width="1877" height="362" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599722456397" />
+    <state width="2005" height="268" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1599503175042" />
+    <state width="1877" height="362" key="GridCell.Tab.0.right" timestamp="1599722456397">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="155" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599574402324" />
+    <state width="1877" height="362" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599722456397" />
+    <state width="2005" height="268" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1599503175042" />
+    <state width="1877" height="433" key="GridCell.Tab.1.bottom" timestamp="1599684938176">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="280" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599553921477" />
+    <state width="1877" height="433" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599684938176" />
+    <state width="2005" height="244" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1599502354380" />
+    <state width="1877" height="433" key="GridCell.Tab.1.center" timestamp="1599684938176">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="280" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1599553921477" />
+    <state width="1877" height="433" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599684938176" />
+    <state width="2005" height="244" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1599502354380" />
+    <state width="1877" height="433" key="GridCell.Tab.1.left" timestamp="1599684938176">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="280" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1599553921477" />
+    <state width="1877" height="433" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599684938176" />
+    <state width="2005" height="244" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1599502354380" />
+    <state width="1877" height="433" key="GridCell.Tab.1.right" timestamp="1599684938176">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="280" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599553921477" />
+    <state width="1877" height="433" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599684938176" />
+    <state width="2005" height="244" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1599502354380" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1598976131245">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="271" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1598973430237" />
-    <state width="2005" height="271" key="GridCell.Tab.0.center" timestamp="1598973430237">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state width="2005" height="271" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1598973430237" />
-    <state width="2005" height="271" key="GridCell.Tab.0.left" timestamp="1598973430237">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state width="2005" height="271" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1598973430237" />
-    <state width="2005" height="271" key="GridCell.Tab.0.right" timestamp="1598973430237">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state width="2005" height="271" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1598973430237" />
-    <state width="2005" height="245" key="GridCell.Tab.1.bottom" timestamp="1598962896223">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state width="2005" height="245" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1598962896223" />
-    <state width="2005" height="245" key="GridCell.Tab.1.center" timestamp="1598962896223">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state width="2005" height="245" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1598962896223" />
-    <state width="2005" height="245" key="GridCell.Tab.1.left" timestamp="1598962896223">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state width="2005" height="245" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1598962896223" />
-    <state width="2005" height="245" key="GridCell.Tab.1.right" timestamp="1598962896223">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state width="2005" height="245" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1598962896223" />
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1598975903685">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1598975903685" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1598976131245" />
     <state width="1031" height="563" key="XDebugger.FullValuePopup" timestamp="1596449120569">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -458,12 +517,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils.py</url>
-          <line>112</line>
+          <line>183</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils.py</url>
-          <line>120</line>
+          <line>191</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -493,27 +552,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>153</line>
+          <line>128</line>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>134</line>
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test.py</url>
-          <line>127</line>
+          <line>114</line>
           <option name="timeStamp" value="122" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils.py</url>
-          <line>90</line>
+          <line>161</line>
           <option name="timeStamp" value="139" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils.py</url>
-          <line>105</line>
+          <line>176</line>
           <option name="timeStamp" value="140" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -523,58 +577,48 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils.py</url>
-          <line>75</line>
+          <line>146</line>
           <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils.py</url>
-          <line>78</line>
+          <line>149</line>
           <option name="timeStamp" value="165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test.py</url>
-          <line>104</line>
-          <option name="timeStamp" value="167" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils.py</url>
-          <line>62</line>
+          <line>134</line>
           <option name="timeStamp" value="169" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train.py</url>
+          <line>209</line>
+          <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data/generateCSV.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data/generateCSV.py</url>
+          <line>83</line>
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train.py</url>
+          <line>62</line>
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="180" />
+          <line>111</line>
+          <option name="timeStamp" value="223" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/__init__.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="190" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/__init__.py</url>
-          <line>82</line>
-          <option name="timeStamp" value="191" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/__init__.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="197" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/train.py</url>
-          <line>239</line>
-          <option name="timeStamp" value="200" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/train.py</url>
-          <line>235</line>
-          <option name="timeStamp" value="201" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/config.py</url>
-          <line>19</line>
-          <option name="timeStamp" value="202" />
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <line>105</line>
+          <option name="timeStamp" value="226" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -587,15 +631,15 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="x.shape" language="Python" />
-        <watch expression="path" language="Python" />
+        <watch expression="image" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/RGB_S$train.coverage" NAME="train Coverage Results" MODIFIED="1598962796186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/RGB_S$createCSV.coverage" NAME="createCSV Coverage Results" MODIFIED="1591785530838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/RGB_S$generateCSV.coverage" NAME="generateCSV Coverage Results" MODIFIED="1599680970864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/RGB_S$train.coverage" NAME="train Coverage Results" MODIFIED="1599681998249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/RGB_S$createCSV.coverage" NAME="createCSV Coverage Results" MODIFIED="1599684089630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/RGB_S$crateSpectralCSV.coverage" NAME="crateSpectralCSV Coverage Results" MODIFIED="1596046795990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/RGB_S$test.coverage" NAME="test Coverage Results" MODIFIED="1598973342776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RGB_S$test.coverage" NAME="train Coverage Results" MODIFIED="1599686198218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
